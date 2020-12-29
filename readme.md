@@ -10,6 +10,8 @@
 
 ## Rezultate
 
+Pentru a vedea rezultate in functie de alti ani, se pot modifica valorile variabilelor `startYear` si `endYear` din fisierul `main.py`. Noile date generate pot fi gasite in folder-ul `output`.
+
 ### Grafic
 
 <div style="text-align: center;">
@@ -18,7 +20,7 @@
 
 ### Progresul Mediu pe An
 
-Conform calculelor nostre, progresul rezultat este `1.900514041074173`.
+Conform calculelor nostre, progresul rezultat pe intervalul `1993-2020` este `1.900514041074173`.
 
 ---
 
@@ -35,6 +37,6 @@ Informatiile au fost extrase de pe site-ul [www.top500.org](https://www.top500.o
 
 ### Progresul mediu realizat pe an:
 - Calculam pentru fiecare luna (iunie sau noiembrie) media aritmetica a primelor 3 calculatoare 
-(dupa criteriul `Rmax(TFlop/s)`), iar apoi media dintre cele doua luni, obtinand media anuala
+(dupa criteriul `Rmax(TFlop/s)`), iar apoi media dintre cele doua luni, obtinand media anuala.
 - Am determinat rapoartele mediilor anuale dupa formula: `medie_an X/medie_an X-1`, unde `X ∈ [startYear+1, endYear]`.
 - Folosind rapoartele anterior calculate am realizat media aritmetica a acestora, ceea ce reprezinta valoarea cautata.

@@ -65,23 +65,25 @@ dataContent = f.read()
 dataContentDict = {} if dataContent == '' else json.loads(dataContent)
 
 startYear = 1993
-endYear = 1995
+endYear = 2020
 
 minPerf, maxPerf = math.inf, -math.inf
+
+oldDataContentDict = dataContentDict
+dataContentDict = {}
 
 for year in range(startYear, endYear + 1):
   juneData, novData = None, None
   
-  if str(year) in dataContentDict:
-    juneData = dataContentDict[str(year)]['june']
-    novData = dataContentDict[str(year)]['november']
+  if str(year) in oldDataContentDict:
+    juneData = oldDataContentDict[str(year)]['june']
+    novData = oldDataContentDict[str(year)]['november']
   else:
     june = '06'
     nov = '11'
 
     juneData = getMonthDataFromRawString(getMonthData(year, june))
     novData = getMonthDataFromRawString(getMonthData(year, nov))
-  
 
   maxPerf = juneData if juneData > maxPerf else maxPerf
   maxPerf = novData if novData > maxPerf else maxPerf
@@ -93,10 +95,13 @@ for year in range(startYear, endYear + 1):
     'november': novData
   }
 
+oldDataContentDict = {**oldDataContentDict, **dataContentDict}
 
 f.seek(0)
 f.truncate()
-json.dump(dataContentDict, f)
+json.dump(oldDataContentDict, f)
+
+f.close()
 
 if not os.path.exists(OUTPUT_PROGRESS_DIR_NAME):
   os.makedirs(OUTPUT_PROGRESS_DIR_NAME)
@@ -135,7 +140,7 @@ plt.gca().format_ydata = lambda x: x + 1
 
 plt.yticks(np.arange(0, maxPerf, (maxPerf - minPerf) / 8))
 
-# plt.savefig(
-#   './output/graf.png',
-#   format='png',
-# )
+plt.savefig(
+  'output/graf.png',
+  format='png',
+)
