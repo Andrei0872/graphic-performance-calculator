@@ -1,1 +1,0 @@
-# graphic-performance-calculator
